@@ -1,0 +1,1 @@
+INSERT INTO cities (name, postcode) VALUES ('Krosno', '30-400'),('Jasło', '38-200'),('Gorlice', '38-300');
