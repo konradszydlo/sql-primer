@@ -15,7 +15,7 @@ To decide whether someone has entered an Open competition, we need to find just 
 To decide whether someone has not entered an Open competition,
 we need to check all the Open entries to make sure that member does not appear.
 
-TODO in chapter 7 we can use set operations and process approach to find such people
+In chapter 7 we can use set operations - EXCEPT and process approach to find such people
 or use EXISTS keyword.
 
 # Different types of subqueries

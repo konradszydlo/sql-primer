@@ -46,10 +46,19 @@ SELECT m.firstname, m.lastname
 FROM Members m
 WHERE NOT EXISTS (SELECT * FROM Entries e, Tournaments t
     WHERE m.id = e.member_id
-    AND e.tour_id = t.id AND t.type = 'Open');
+    AND e.tour_id = t.id AND t.type = 'Open')
+ORDER BY m.lastname;
 
 -- Process approach - 'how'
--- TODO covered in chapter 7
+-- Use Except set operator from chapter 7:
+
+SELECT firstname, lastname FROM Members
+EXCEPT
+SELECT m.firstname, m.lastname
+  FROM (Members m JOIN Entries e ON m.id = e.member_id)
+  JOIN Tournaments t ON e.tour_id = t.id
+  WHERE  t.type = 'Open'
+ORDER BY lastname;
 
 /* Different types of subqueries */
 
