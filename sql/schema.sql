@@ -58,3 +58,14 @@ CREATE TABLE Entries (
   member_id INT REFERENCES Members(id),
   tour_id INT REFERENCES Tournaments(id)
 );
+
+CREATE TABLE Areas (
+  name TEXT PRIMARY KEY
+);
+
+CREATE TABLE Incomes (
+  id SERIAL PRIMARY KEY,
+  area TEXT REFERENCES Areas(name),
+  month INT,
+  income INTEGER
+);

@@ -40,3 +40,9 @@ INSERT INTO Entries (member_id, tour_id, year) VALUES (1,1,'2014'),(6,1,'2015'),
 UPDATE Teams set manager_id = 3 WHERE id = 1;
 UPDATE Teams set manager_id = 8 WHERE id = 2;
 UPDATE Teams set manager_id = 9 WHERE id = 3;
+
+INSERT INTO Areas VALUES ('Halswell'),('Pegasus'),('Russley');
+
+INSERT INTO Incomes (month,area,income) VALUES (1,'Halswell',2400),(1,'Pegasus',3868),(1,'Russley',2123),
+(2,'Halswell',3800),(2,'Pegasus',2719),(2,'Russley',3534),(3,'Halswell',1400),(3,'Pegasus',1650),(3,'Russley',1486),
+(4,'Halswell',4500),(4,'Pegasus',5072),(4,'Russley',4471),(5,'Halswell',6200),(5,'Pegasus',6406),(5,'Russley',5846);
