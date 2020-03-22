@@ -85,6 +85,21 @@ WHERE e.tour_id = 5;
 -- Division is not supported yet in SQL.
 
 -- Find members that entered all tournaments
+/*
+
+Write out the value of m.lastname, m.firstname from rows m in the Members table
+where for every row t in the Tournaments table there exists a row e in the Entries table
+with e.member_id = m.id and e.tour_id = t.id
+
+We have an SQL keyword for exists but not for every. We can get rid of the every word in the preceding statement
+by using the following slightly mind-bending logic. The phrase:
+
+    for every row t in the Tournaments table there exists a row e in the Entries table…
+
+is equivalent to saying:
+
+    there is no row t in the Tournaments table where there does not exist a row e in the Entries table…
+*/
 
 SELECT m.lastname, m.firstname, m.id FROM Members m
 WHERE NOT EXISTS
@@ -102,3 +117,27 @@ WHERE NOT EXISTS
        AND NOT EXISTS
          (SELECT * FROM Entries e
           WHERE e.member_id = m.id AND e.tour_id = t.id));
+
+-- Find members that entered all tournaments in a given year
+
+SELECT DISTINCT m.lastname, m.firstname, e1.year FROM Members m
+JOIN Entries e1 on e1.member_id = m.id
+WHERE NOT EXISTS
+    (SELECT * FROM Tournaments t
+     WHERE
+       NOT EXISTS
+         (SELECT * FROM Entries e
+          WHERE e.member_id = m.id AND e.tour_id = t.id
+            AND e.year = e1.year));
+
+-- Has anyone coached all the social members?
+
+SELECT firstname, lastname, coach, membership_type FROM Members WHERE membership_type = 'Social';
+
+SELECT m.lastname, m.firstname, m.membership_type FROM members m
+WHERE NOT EXISTS
+    (SELECT * FROM Members social_members
+    WHERE social_members.membership_type = 'Social'
+    AND NOT EXISTS
+    (SELECT * FROM members m3
+        WHERE social_members.coach = m.id));

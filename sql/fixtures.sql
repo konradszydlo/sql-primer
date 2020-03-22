@@ -16,7 +16,7 @@ INSERT INTO Members (id, firstname, lastname, phone, handicap, join_date, gender
 (2,'Michael','Stone','',30,'2009-05-30','M',3,'Senior',NULL),
 (3,'Brenda','Nolan','',11,'2006-08-12','F',2,'Senior',NULL),
 (4,'Helen','Branch','',NULL,'2011-11-06','F',3,'Social',2),
-(5,'Sarah','Beck','',NULL,'2010-01-24','F',3,'Social',3),
+(5,'Sarah','Beck','',NULL,'2010-01-24','F',3,'Social',2),
 (6,'Sandra','Burton','',26,'2008-07-09','F',3,'Junior',2),
 (7,'William','Cooper','',14,'2008-03-05','M',2,'Senior',3),
 (8,'Thomas','Spence','',10,'2006-06-22','M',3,'Senior',NULL),
@@ -31,11 +31,12 @@ INSERT INTO Members (id, firstname, lastname, phone, handicap, join_date, gender
 (17,'Deborah','Bridges','',12,'2007-03-27','F',NULL,'Senior',NULL),
 (18,'Betty','Young','',21,'2009-04-17','F',2,'Senior',NULL),
 (19,'Carolyn','Wills','',29,'2011-01-14','F',2,'Junior',7),
-(20,'Susan','Kent','',NULL,'2010-10-07','F',1,'Social',7);
+(20,'Susan','Kent','',NULL,'2010-10-07','F',1,'Social',2);
 
 INSERT INTO Entries (member_id, tour_id, year) VALUES (1,1,'2014'),(6,1,'2015'),(6,2,'2015'),(6,3,'2015'),
 (7,4,'2015'),(7,5,'2014'),(7,5,'2015'),(8,2,'2014'),(8,5,'2013'),(8,4,'2016'),(9,1,'2014'),(9,4,'2014'),(14,1,'2015'),
-(14,2,'2013'),(14,3,'2014'),(14,3,'2015'),(14,4,'2013'),(14,4,'2015'),(14,5,'2013'),(14,5,'2014'),(14,5,'2015');
+(14,2,'2013'),(14,3,'2014'),(14,3,'2015'),(14,4,'2013'),(14,4,'2015'),(14,5,'2013'),(14,5,'2014'),(14,5,'2015'),
+(20,1,'2014'),(20,2,'2014'),(20,3,'2014'),(20,4,'2014'),(20,5,'2014');
 
 UPDATE Teams set manager_id = 3 WHERE id = 1;
 UPDATE Teams set manager_id = 8 WHERE id = 2;
