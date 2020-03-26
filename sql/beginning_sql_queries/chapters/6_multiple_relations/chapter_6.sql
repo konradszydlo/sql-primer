@@ -11,7 +11,7 @@ FROM Teams t INNER JOIN Members m ON t.id = m.team_id AND t.manager_id = m.id;
 
 -- Find information about people that manage a team
 
-SELECT t.name, t.practice_night, m2.firstname, m2.lastname
+SELECT DISTINCT t.name, t.practice_night, m2.firstname, m2.lastname
 FROM (Members m1 INNER JOIN Teams t ON t.id = m1.team_id)
     INNER JOIN Members m2 ON t.manager_id = m2.id;
 
@@ -19,7 +19,7 @@ SELECT t.name, t.practice_night, m2.firstname, m2.lastname
 FROM Members m1, Members m2, Teams t
 WHERE m1.team_id = t.id AND t.manager_id = m2.id;
 
--- Finding teams whose managers are not members of any team
+-- Finding teams whose managers are not members of their team
 
 SELECT t.name, t.id AS team_id, t.manager_id AS manager_id, m.firstname, m.lastname, m.team_id
 FROM Teams t, Members m

@@ -34,3 +34,15 @@ SELECT * FROM Members WHERE handicap IS DISTINCT FROM 6;
 SELECT * FROM Members WHERE handicap IS NOT DISTINCT FROM 6;
 
 select count(DISTINCT firstname) from members;
+
+-- Use column alias and order by it:
+
+SELECT handicap * fee AS fee_handicap
+FROM Members, MembershipTypes
+WHERE handicap IS NOT NULL
+GROUP BY fee_handicap
+ORDER BY fee_handicap DESC;
+
+SELECT * FROM (SELECT max(handicap) FROM members) as data;
+
+SELECT lastname FROM members WHERE handicap = (SELECT max(handicap) FROM members);

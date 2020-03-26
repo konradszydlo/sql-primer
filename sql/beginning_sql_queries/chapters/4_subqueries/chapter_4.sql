@@ -27,6 +27,10 @@ SELECT m.firstname, m.lastname
 FROM Members m
 WHERE EXISTS (SELECT * FROM Entries e WHERE e.member_id = m.id);
 
+SELECT m.firstname, m.lastname
+FROM Members m
+WHERE m.id IN (SELECT e.member_id FROM Entries e WHERE e.member_id = m.id);
+
 /* Queries with EXISTS are often equivalent of JOIN queries */
 
 SELECT m.firstname, m.lastname
@@ -76,7 +80,7 @@ SELECT * FROM Members m
 WHERE m.handicap <
       (SELECT avg(handicap) FROM Members);
 
--- Find any junior members have a lower handicap than the average for seniors:
+-- Find any junior members that have a lower handicap than the average for seniors:
 
 SELECT *
 FROM Members m
@@ -218,3 +222,27 @@ SELECT m.lastname, m.firstname FROM Members m WHERE m.Handicap <
 INSERT INTO Entries (member_id, tour_id, Year)
 SELECT id, 5, '2020'
 FROM Members WHERE membership_type = 'Junior';
+
+
+-- find the names of the women who have never played in the Leeston tournament
+
+SELECT m2.lastname, m2.firstname FROM
+    (SELECT m.id FROM Members m
+     WHERE gender = 'F'
+         EXCEPT
+     SELECT e.member_id
+     FROM Entries e INNER JOIN Tournaments t on e.tour_id = t.id
+     WHERE t.name = 'Leeston') AS leston_ladies
+        INNER JOIN Members m2 ON m2.id = leston_ladies.id;
+
+SELECT m.lastname, m.firstname
+FROM Members m
+WHERE gender = 'F'
+  AND NOT EXISTS (
+        SELECT *
+        FROM Entries e
+        WHERE m.id = e.member_id
+          AND EXISTS
+            (SELECT * FROM Tournaments t
+             WHERE t.id = e.tour_id
+               AND t.name = 'Leeston'));

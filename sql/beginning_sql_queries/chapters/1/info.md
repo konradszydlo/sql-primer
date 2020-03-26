@@ -5,7 +5,7 @@
 One way to approach a query is to think in terms of the operations we need to carry out on the tables.
 Let’s think about how we might to get a list of names for members who practice on a Monday.
 We might imagine first retrieving just the rows from the `Teams` table that have Monday in the PracticeNight column.
-We might then join those rows with the `Members` table (more about joins later) and then extract the names from the result.
+We might then join those rows with the `Members` table (joins are in chapter 3) and then extract the names from the result.
 We will call this the process approach, as it is a series of steps carried out in a particular order.
 
 ##  Outcome Approach

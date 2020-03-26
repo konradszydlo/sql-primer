@@ -49,6 +49,11 @@ SELECT lastname, firstname, member_id, count(member_id) AS entries_no
 FROM Entries e JOIN Members m on e.member_id = m.id
 GROUP BY member_id, firstname, lastname;
 
+-- how many people entered different types of tournaments
+SELECT t.type, count(*)
+FROM Entries e INNER JOIN Tournaments t ON e.tour_id = t.id
+GROUP BY t.type;
+
 -- Find number of entries for each tournament
 SELECT tour_id, count(*)
 FROM Entries e GROUP BY tour_id;
